@@ -37,6 +37,7 @@ Link aufrufen und nachfolgende Dateien herunterladen: https://github.com/reinhar
 
 Diese 3 Dateien in ein beliebiges Verzeichnis packen.
 Windows-Powershell starten und in das Verzeichnis wechseln in dem die 3 Dateien liegen.
+**Bluetooth einschalten und in Empfangsnähe der Zendure-Device aufhalten!!!**
 
 Script aufrufen mit folgendem Befehl:
 ```
