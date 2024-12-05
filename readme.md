@@ -1,9 +1,9 @@
-# Zendure Solarflow - Daten an lokalen mqtt-Broker senden und in Home-Assistent abfragen
+# Zendure Solarflow - Daten an lokalen mqtt-Broker senden und in Homeassistant abfragen
 
 ## Vorwort
 
-Seit ca. 1 Jahr habe ich den Zendure Solarflow Hub1200 im Einsatz. Ich suchte nach einer Möglichkeit die Daten in Home-Assistent einzubinden. Dazu nutze ich bis vor kurzer Zeit die Möglichkeit der Abfrage von mqtt-Daten aus der Zendure-Cloud nach der Anleitung von z-master42 (https://github.com/z-master42/solarflow).
-Leider musste ich feststellen, dass sich diese Daten auf Grund sehr hoher Latenzen, nur bedingt zur Auswertung im Energy-Dashboard von Home-Assistent eignen.
+Seit ca. 1 Jahr habe ich den Zendure Solarflow Hub1200 im Einsatz. Ich suchte nach einer Möglichkeit die Daten in Homeassistant einzubinden. Dazu nutze ich bis vor kurzer Zeit die Möglichkeit der Abfrage von mqtt-Daten aus der Zendure-Cloud nach der Anleitung von z-master42 (https://github.com/z-master42/solarflow).
+Leider musste ich feststellen, dass sich diese Daten auf Grund sehr hoher Latenzen, nur bedingt zur Auswertung im Energy-Dashboard des Homeassistant eignen.
 Dann bin ich auf eine Anleitung von Reinhard Brandstaedter (https://github.com/reinhard-brandstaedter/solarflow-bt-manager) gestoßen, in der die lokale Abfrage der mqtt-Daten von Zendure beschrieben wird.
 
 Nachfolgend erkläre ich meine Vorgehensweise.
@@ -12,7 +12,7 @@ Nachfolgend erkläre ich meine Vorgehensweise.
 
 ## Voraussetzungen
 
-  - Home-Assistent
+  - Homeassistent
   - PC oder Laptop mit Bluetooth und Python (ich habe einen Windows-Laptop benutzt)
   - lokaler mqtt-Broker mit anonymen Login
   - Hub1200 (SF_PRODUCT_ID=73bkTV) oder Hub2000 (SF_PRODUCT_ID=A8yh63) oder AIO2400 (SF_PRODUCT_ID=yWF7hV)
@@ -21,8 +21,8 @@ Nachfolgend erkläre ich meine Vorgehensweise.
 
 ### 1. lokaler mqtt-Broker
 
-Ich empfehle hier EMQX. Dieser mqtt-Broker ist als Addon für Home-Assistent verfügbar, kann aber auch z.B. als LXC auf Proxmox laufen.
-Der vielbenutzte Mosquitto broker in Homeassistent funktioniert für dieses Vorhaben nicht, da er keine anonymen Logins zulässt.
+Ich empfehle hier EMQX. Dieser mqtt-Broker ist als Addon für Homeassistant verfügbar, kann aber auch z.B. als LXC auf Proxmox laufen.
+Das vielbenutzte Mosquitto-broker-Addon in Homeassistant funktioniert für dieses Vorhaben nicht, da es keine anonymen Logins zulässt.
 
 EMQX installieren und Weboberfläche des EMQX öffnen.
 Im Menü unter "Authentication" eventuelle Einträge löschen.
@@ -83,7 +83,7 @@ Jetzt sollten im MQTT-Explorer schon ein Topic zu sehen sein.
 ```
 /73bkTV/<your device id>/#
 ```
-Um die mqtt-Topics für Home-Assistent aufzubereiten folgt der nächste Schritt.
+Um die mqtt-Topics für Homeassistant aufzubereiten folgt der nächste Schritt.
 
 ### 4. mqtt-Topics
 
@@ -94,7 +94,7 @@ $ python3 solarflow-topic-mapper.py
 
 Jetzt sollten im MQTT-Explorer unter dem Haupttopic "solarflow-hub"alle Untertopics zu sehen sein.
 
-### 5. Home-Assistent mqtt.yaml
+### 5. Homeassistant mqtt.yaml
 
 In Home-Assistent in der configuration.yaml folgende Zeite einfügen.
 ```
