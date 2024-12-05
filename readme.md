@@ -74,7 +74,7 @@ mqtt_port = os.environ.get('MQTT_PORT',1883)
 ### 3. SF-Device von der Zendure-Cloud trennen
 
 **WICHTIG!!!! Zendure-App auf dem Smartphone schließen, Bluetooth einschalten und in Empfangsnähe der Zendure-Device aufhalten!!!**
-In der Windows Powershell folgenden Befehl ausführen.
+In der Windows Powershell folgenden Befehl ausführen. Im Befehl eure WLAN-SSID und IP eures mqtt-Brokers eintragen.
 ```
 $ python3 solarflow-bt-manager.py -d -w WLAN_SSID -b IP_MQTT-BROKER:1883
 ```
@@ -110,7 +110,7 @@ Nach dem Konfigurieren App auf dem Smartphone unbedingt wieder schließen!!!**
 
 ### 6. SF-Device zurück in die Zendure-Cloud bringen, wenn nötig
 
-Dazu wird folgender Befehl benutzt:
+Dazu wird folgender Befehl benutzt. Im Befehl eure WLAN-SSID eintragen.
 ```
 $ python3 solarflow-bt-manager.py -c -w <WiFi SSID>
 ```
