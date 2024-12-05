@@ -8,7 +8,7 @@ Dann bin ich auf eine Anleitung von Reinhard Brandstaedter (https://github.com/r
 
 Nachfolgend erkläre ich meine Vorgehensweise.
 
-Ich weise jedoch darauf hin, dass die Nutzung dieser Beschreibung auf eigene Gefahr erfolgt. Ich hafte nicht für eventuelle Schäden, Funktionsstörungen oder sonstige Dinge die durch die Nutzung dieser Anleitung enstehen.
+**Ich weise jedoch darauf hin, dass die Nutzung dieser Beschreibung auf eigene Gefahr erfolgt. Ich hafte nicht für eventuelle Schäden, Funktionsstörungen oder sonstige Dinge die durch die Nutzung dieser Anleitung enstehen.**
 
 ## Voraussetzungen
 
