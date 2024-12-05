@@ -1,6 +1,6 @@
-#Zendure Solarflow - Daten an lokalen mqtt-Broker senden und in Home-Assistent abfragen
+# Zendure Solarflow - Daten an lokalen mqtt-Broker senden und in Home-Assistent abfragen
 
-##Vorwort
+## Vorwort
 
 Seit ca. 1 Jahr habe ich den Zendure Solarflow Hub1200 im Einsatz. Ich suchte nach einer Möglichkeit die Daten in Home-Assistent einzubinden. Dazu nutze ich bis vor kurzer Zeit die Möglichkeit der Abfrage von mqtt-Daten aus der Zendure-Cloud nach der Anleitung von z-master42 (https://github.com/z-master42/solarflow).
 Leider musste ich feststellen, dass sich diese Daten auf Grund sehr hoher Latenzen, nur bedingt zur Auswertung im Energy-Dashboard von Home-Assistent eignen.
@@ -10,16 +10,16 @@ Nachfolgend erkläre ich meine Vorgehensweise.
 
 Ich weise jedoch darauf hin, dass die Nutzung dieser Beschreibung auf eigene Gefahr erfolgt. Ich hafte nicht für eventuelle Schäden, Funktionsstörungen oder sonstige Dinge die durch die Nutzung dieser Anleitung enstehen.
 
-##Voraussetzungen
+## Voraussetzungen
 
   - Home-Assistent
   - PC oder Laptop mit Bluetooth und Python (ich habe einen Windows-Laptop benutzt)
   - lokaler mqtt-Broker mit anonymen Login
   - Hub1200 (SF_PRODUCT_ID=73bkTV) oder Hub2000 (SF_PRODUCT_ID=A8yh63) oder AIO2400 (SF_PRODUCT_ID=yWF7hV)
 
-##Steps
+## Steps
 
-###1. lokaler mqtt-Broker
+### 1. lokaler mqtt-Broker
 
 Ich empfehle hier EMQX. Dieser mqtt-Broker ist als Addon für Home-Assistent verfügbar, kann aber auch z.B. als LXC auf Proxmox laufen.
 Der vielbenutzte Mosquitto broker in Homeassistent funktioniert für dieses Vorhaben nicht, da er keine anonymen Logins zulässt.
@@ -27,7 +27,7 @@ Der vielbenutzte Mosquitto broker in Homeassistent funktioniert für dieses Vorh
 EMQX installieren und Weboberfläche des EMQX öffnen.
 Im Menü unter "Authentication" eventuelle Einträge löschen.
 
-###2. Scripte herunterladen, Zendure-Infos abfragen und Scripe anpassen
+### 2. Scripte herunterladen, Zendure-Infos abfragen und Scripe anpassen
 
 Link aufrufen und nachfolgende Dateien herunterladen: https://github.com/reinhard-brandstaedter/solarflow-bt-manager/tree/master/src
 
@@ -70,7 +70,7 @@ mqtt_host = os.environ.get('MQTT_HOST','IP_MQTT-BROKER')
 mqtt_port = os.environ.get('MQTT_PORT',1883)
 ```
 
-###3. SF-Device von der Zendure-Cloud trennen
+### 3. SF-Device von der Zendure-Cloud trennen
 
 **WICHTIG!!!! Zendure-App auf dem Smartphone schließen**
 In der Windows Powershell feolgenden Befehl ausführen.
@@ -82,7 +82,7 @@ Jetzt sollten im MQTT-Explorer schon ein Topic zu sehen sein.
 > /73bkTV/<your device id>/#
 Um die mqtt-Topics für Home-Assistent aufzubereiten folgt der nächste Schritt.
 
-###4. mqtt-Topics
+### 4. mqtt-Topics
 
 Hier kann erst einmal der Laptop mit der Powershell genutzt werden. Allerdings muss nachfolgendes Script permanent laufen und dazu müsste der Laptop immer eingeschaltet sein. Da dies ziemlich unvorteilhaft ist, habe ich unter Proxmox einen Linux-Container eingerichtet in dem ich nachfolgendes Script permanent laufen lasse. Es gibt aber auch andere Möglichkeiten z.B. Docker usw.
 ```
@@ -91,7 +91,7 @@ $ python3 solarflow-topic-manager.py
 
 Jetzt sollten im MQTT-Explorer unter dem Haupttopic "solarflow-hub"alle Untertopics zu sehen sein.
 
-###5. Home-Assistent mqtt.yaml
+### 5. Home-Assistent mqtt.yaml
 
 In Home-Assistent in der configuration.yaml folgende Zeite einfügen.
 ```
@@ -101,7 +101,7 @@ mqtt: !include mqtt.yaml
 Nun muß im config-Verzeichnis von Home-Assistent eine Datei namens mqtt.yaml angelegt und mit folgendem Inhalt beschrieben werden. WICHTIG!!! Die Einrückungen unbedingt beibehalten!!! Homeassistant neu starten
 Es sind auch noch nicht alle Switches und Sensoren in der mqtt.yaml vorhanden - Update folgt!!
 
-###6. SF-Device zurück in die Zendure-Cloud bringen, wenn nötig
+### 6. SF-Device zurück in die Zendure-Cloud bringen, wenn nötig
 
 Dazu wird folgender Befehl benutzt:
 ```
