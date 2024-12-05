@@ -100,8 +100,9 @@ In Home-Assistent in der configuration.yaml folgende Zeite einfügen.
 mqtt: !include mqtt.yaml
 ```
 
-Nun muß im config-Verzeichnis von Home-Assistent eine Datei namens mqtt.yaml angelegt und mit folgendem Inhalt beschrieben werden. WICHTIG!!! Die Einrückungen unbedingt beibehalten!!! Homeassistant neu starten
-Es sind auch noch nicht alle Switches und Sensoren in der mqtt.yaml vorhanden - Update folgt!!
+mqtt.yaml herunter laden und anpassen. WICHTIG!!! Die Einrückungen unbedingt beibehalten!!!
+Nach dem Anpassen im config-Verzeichnis des Homeassistant ablegen.
+Homeassistant neu starten!
 
 ### 6. SF-Device zurück in die Zendure-Cloud bringen, wenn nötig
 
