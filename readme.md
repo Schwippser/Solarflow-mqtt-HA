@@ -104,7 +104,8 @@ mqtt.yaml herunter laden und anpassen. WICHTIG!!! Die Einrückungen unbedingt be
 Nach dem Anpassen im config-Verzeichnis des Homeassistant ablegen.
 Homeassistant neu starten!
 
-**Das Zendure-Device ist jetzt nicht mehr in der Zendure-Cloud aber über die Zendure-App per Bluetooth weiterhin konfigurierbar.**
+**Das Zendure-Device ist jetzt nicht mehr in der Zendure-Cloud aber über die Zendure-App per Bluetooth weiterhin konfigurierbar.
+Nach dem Konfigurieren App auf dem Smartphone unbedingt wieder schließen!!!**
 
 ### 6. SF-Device zurück in die Zendure-Cloud bringen, wenn nötig
 
