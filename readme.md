@@ -62,8 +62,8 @@ SF_PRODUCT_ID = os.environ.get('SF_PRODUCT_ID','PRODUCT_ID') #siehe oben bei Vor
 
 solarflow-topic-mapper.py:
 ```
-sf_device_id = os.environ.get('SF_DEVICE_ID','DEVICE_ID') **siehe Abfrage-Infos Script**
-sf_product_id = os.environ.get('SF_PRODUCT_ID',"PRODUCT_ID") **siehe oben bei Voraussetzungen**
+sf_device_id = os.environ.get('SF_DEVICE_ID','DEVICE_ID') #siehe Abfrage-Infos Script**
+sf_product_id = os.environ.get('SF_PRODUCT_ID',"PRODUCT_ID") #siehe oben bei Voraussetzungen**
 mqtt_user = os.environ.get('MQTT_USER',None)
 mqtt_pwd = os.environ.get('MQTT_PWD',None)
 mqtt_host = os.environ.get('MQTT_HOST','IP_MQTT-BROKER')
