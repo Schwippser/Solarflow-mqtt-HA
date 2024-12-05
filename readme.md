@@ -79,8 +79,9 @@ $ python3 solarflow-bt-manager.py -d -w WLAN_SSID -b IP_MQTT-BROKER:1883
 ```
 
 Jetzt sollten im MQTT-Explorer schon ein Topic zu sehen sein. 
-> /73bkTV/<your device id>/#
-
+```
+/73bkTV/<your device id>/#
+```
 Um die mqtt-Topics für Home-Assistent aufzubereiten folgt der nächste Schritt.
 
 ### 4. mqtt-Topics
