@@ -1,10 +1,10 @@
 ################ Solarflow Hub1200 1 ##################
 
    switch:
-     - unique_id: "Qx8EM0jDmasterSwitch"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/masterSwitch/state"
+     - unique_id: "DEVICE_IDmasterSwitch"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/masterSwitch/state"
        state_off: false
-       command_topic: "solarflow-hub/Qx8EM0jD/telemetry/masterSwitch/set"
+       command_topic: "solarflow-hub/DEVICE_ID/telemetry/masterSwitch/set"
        name: "Master Switch"
        device_class: "switch"
        value_template: "{{ value_json.masterSwitch | default('') }}"
@@ -17,10 +17,10 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
-     - unique_id: "Qx8EM0jDbuzzerSwitch"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/buzzerSwitch/state"
+     - unique_id: "DEVICE_IDbuzzerSwitch"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/buzzerSwitch/state"
        state_off: false
-       command_topic: "solarflow-hub/Qx8EM0jD/telemetry/buzzerSwitch/set"
+       command_topic: "solarflow-hub/DEVICE_ID/telemetry/buzzerSwitch/set"
        name: "Buzzer Switch"
        device_class: "switch"
        value_template: "{{ value_json.buzzerSwitch | default('') }}"
@@ -33,10 +33,10 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
-     - unique_id: "Qx8EM0jDautoRecover"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/autoRecover/state"
+     - unique_id: "DEVICE_IDautoRecover"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/autoRecover/state"
        state_off: false
-       command_topic: "solarflow-hub/Qx8EM0jD/telemetry/autoRecover/set"
+       command_topic: "solarflow-hub/DEVICE_ID/telemetry/autoRecover/set"
        name: "Auto Recover"
        device_class: "switch"
        value_template: "{{ value_json.autoRecover | default('') }}"
@@ -52,8 +52,8 @@
    sensor:
 
      - name: "SF1 Hub State"
-       unique_id: "Qx8EM0jDhubState"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/hubState"
+       unique_id: "DEVICE_IDhubState"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/hubState"
        value_template: "{{ value | int }}"
        device: 
          name: "Hub 1200 (1)"
@@ -62,8 +62,8 @@
          model: "SmartPV Hub 1200 Controller"
 
      - name: "SF1 Solar Input Power"
-       unique_id: "Qx8EM0jDsolarInputPower"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/solarInputPower"
+       unique_id: "DEVICE_IDsolarInputPower"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/solarInputPower"
        unit_of_measurement: "W"
        device_class: "power"
        value_template: "{{ value | int(0) }}"
@@ -75,8 +75,8 @@
          model: "SmartPV Hub 1200 Controller"
 
      - name: "SF1 Pack Input Power"
-       unique_id: "Qx8EM0jDpackInputPower"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/packInputPower"
+       unique_id: "DEVICE_IDpackInputPower"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/packInputPower"
        unit_of_measurement: "W"
        device_class: "power"
        value_template: "{{ value | int(0) }}"
@@ -88,8 +88,8 @@
          model: "SmartPV Hub 1200 Controller"
 
      - name: "SF1 Output Pack Power"
-       unique_id: "Qx8EM0jDoutputPackPower"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/outputPackPower"
+       unique_id: "DEVICE_IDoutputPackPower"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/outputPackPower"
        unit_of_measurement: "W"
        device_class: "power"
        value_template: "{{ value | int(0) }}"
@@ -101,8 +101,8 @@
          model: "SmartPV Hub 1200 Controller"
 
      - name: "SF1 Output Home Power"
-       unique_id: "Qx8EM0jDoutputHomePower"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/outputHomePower"
+       unique_id: "DEVICE_IDoutputHomePower"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/outputHomePower"
        unit_of_measurement: "W"
        device_class: "power"
        value_template: "{{ value | int(0) }}"
@@ -114,8 +114,8 @@
          model: "SmartPV Hub 1200 Controller"
 
      - name: "SF1 Output Limit"
-       unique_id: "Qx8EM0jDoutputLimit"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/outputLimit"
+       unique_id: "DEVICE_IDoutputLimit"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/outputLimit"
        value_template: "{{ value | int }}"
        unit_of_measurement: "W"
        device: 
@@ -125,8 +125,8 @@
          model: "SmartPV Hub 1200 Controller"
 
      - name: "SF1 Input Limit"
-       unique_id: "Qx8EM0jDinputLimit"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/inputLimit"
+       unique_id: "DEVICE_IDinputLimit"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/inputLimit"
        value_template: "{{ value | int }}"
        unit_of_measurement: "W"
        device: 
@@ -136,8 +136,8 @@
          model: "SmartPV Hub 1200 Controller"
 
      - name: "SF1 Remain Out Time"
-       unique_id: "Qx8EM0jDremainOutTime"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/remainOutTime"
+       unique_id: "DEVICE_IDremainOutTime"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/remainOutTime"
        value_template: "{{ value | int }}"
        device_class: "duration"
        unit_of_measurement: "min"
@@ -148,8 +148,8 @@
          model: "SmartPV Hub 1200 Controller"
 
      - name: "SF1 Remain Input Time"
-       unique_id: "Qx8EM0jDremainInputTime"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/remainInputTime"
+       unique_id: "DEVICE_IDremainInputTime"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/remainInputTime"
        value_template: "{{ value | int }}"
        device_class: "duration"
        unit_of_measurement: "min"
@@ -160,8 +160,8 @@
          model: "SmartPV Hub 1200 Controller"
 
      - name: "SF1 Pack State"
-       unique_id: "Qx8EM0jDpackState"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/packState"
+       unique_id: "DEVICE_IDpackState"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/packState"
        value_template: "{{ value | int }}"
        device: 
          name: "Hub 1200 (1)"
@@ -170,8 +170,8 @@
          model: "SmartPV Hub 1200 Controller"
 
      - name: "SF1 Pack Num"
-       unique_id: "Qx8EM0jDpackNum"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/packNum"
+       unique_id: "DEVICE_IDpackNum"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/packNum"
        value_template: "{{ value | int }}"
        device: 
          name: "Hub 1200 (1)"
@@ -180,8 +180,8 @@
          model: "SmartPV Hub 1200 Controller"
 
      - name: "SF1 Electric Level"
-       unique_id: "Qx8EM0jDelectricLevel"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/electricLevel"
+       unique_id: "DEVICE_IDelectricLevel"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/electricLevel"
        unit_of_measurement: "%"
        device_class: "battery"
        value_template: "{{ value | int }}"
@@ -192,8 +192,8 @@
          model: "SmartPV Hub 1200 Controller"
 
      - name: "SF1 SOC Set"
-       unique_id: "Qx8EM0jDsocSet"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/socSet"
+       unique_id: "DEVICE_IDsocSet"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/socSet"
        unit_of_measurement: "%"
        value_template: "{{ value | int / 10 }}"
        device: 
@@ -203,8 +203,8 @@
          model: "SmartPV Hub 1200 Controller"
          
      - name: "SF1 min SOC"
-       unique_id: "Qx8EM0jDminSoc"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/minSoc"
+       unique_id: "DEVICE_IDminSoc"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/minSoc"
        unit_of_measurement: "%"
        value_template: "{{ value | int / 10 }}"
        device: 
@@ -214,8 +214,8 @@
          model: "SmartPV Hub 1200 Controller"         
          
      - name: "SF1 Inverse Max Power"
-       unique_id: "Qx8EM0jDinverseMaxPower"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/inverseMaxPower"
+       unique_id: "DEVICE_IDinverseMaxPower"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/inverseMaxPower"
        value_template: "{{ value | int }}"
        unit_of_measurement: "W"
        device: 
@@ -225,8 +225,8 @@
          model: "SmartPV Hub 1200 Controller"
 
      - name: "SF1 WiFi State"
-       unique_id: "Qx8EM0jDwifiState"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/wifiState"
+       unique_id: "DEVICE_IDwifiState"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/wifiState"
        value_template: "{{ value | bool('') }}"
        device: 
          name: "Hub 1200 (1)"
@@ -235,8 +235,8 @@
          model: "SmartPV Hub 1200 Controller"
          
      - name: "SF1 Heat State"
-       unique_id: "Qx8EM0jDheatState"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/heatState"
+       unique_id: "DEVICE_IDheatState"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/heatState"
        value_template: "{{ value | bool('') }}"
        device: 
          name: "Hub 1200 (1)"
@@ -245,8 +245,8 @@
          model: "SmartPV Hub 1200 Controller"   
          
      - name: "SF1 AC Mode"
-       unique_id: "Qx8EM0jDacMode"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/acMode"
+       unique_id: "DEVICE_IDacMode"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/acMode"
        value_template: "{{ value | int }}"
        device: 
          name: "Hub 1200 (1)"
@@ -255,8 +255,8 @@
          model: "SmartPV Hub 1200 Controller"                
 
      - name: "SF1 Solar Power 1"
-       unique_id: "Qx8EM0jDsolarPower1"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/solarPower1"
+       unique_id: "DEVICE_IDsolarPower1"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/solarPower1"
        value_template: "{{ value | int(0) }}"
        unit_of_measurement: "W"
        device_class: "power"
@@ -268,8 +268,8 @@
          model: "SmartPV Hub 1200 Controller"
 
      - name: "SF1 Solar Power 2"
-       unique_id: "Qx8EM0jDsolarPower2"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/solarPower2"
+       unique_id: "DEVICE_IDsolarPower2"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/solarPower2"
        value_template: "{{ value | int(0) }}"
        unit_of_measurement: "W"
        device_class: "power"
@@ -281,8 +281,8 @@
          model: "SmartPV Hub 1200 Controller"
 
      - name: "SF1 Pass Mode"
-       unique_id: "Qx8EM0jDpassMode"
-       state_topic: "solarflow-hub/Qx8EM0jD/telemetry/passMode"
+       unique_id: "DEVICE_IDpassMode"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/passMode"
        value_template: "{{ value | int }}"
        device: 
          name: "Hub 1200 (1)"
