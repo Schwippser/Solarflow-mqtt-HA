@@ -88,7 +88,7 @@ Um die mqtt-Topics für Home-Assistent aufzubereiten folgt der nächste Schritt.
 
 Hier kann erst einmal der Laptop mit der Powershell genutzt werden. Allerdings muss nachfolgendes Script permanent laufen und dazu müsste der Laptop immer eingeschaltet sein. Da dies ziemlich unvorteilhaft ist, habe ich unter Proxmox einen Linux-Container eingerichtet in dem ich nachfolgendes Script permanent laufen lasse. Es gibt aber auch andere Möglichkeiten z.B. Docker usw.
 ```
-$ python3 solarflow-topic-manager.py
+$ python3 solarflow-topic-mapper.py
 ```
 
 Jetzt sollten im MQTT-Explorer unter dem Haupttopic "solarflow-hub"alle Untertopics zu sehen sein.
