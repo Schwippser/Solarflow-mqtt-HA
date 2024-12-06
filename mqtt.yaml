@@ -1,4 +1,78 @@
-################ Solarflow Hub1200 1 ##################
+################ Solarflow Hub1200 ##################
+### für Hub 2000 "73bkTV" durch "A8yh63" ersetzen ###
+### für AIO2400  "73bkTV" durch "yWF7hV" ersetzen ###
+
+   number:
+   
+     - unique_id: "DEVICE_IDminSoc"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/minSoc"
+       command_topic: "iot/73bkTV/DEVICE_ID/properties/write"
+       command_template: "{\"properties\": {\"minSoc\": {{ value | multiply(10) }} }}"
+       name: "minSoc"
+       device_class: "battery"
+       unit_of_measurement: '%'
+       min: 1
+       max: 100
+       step: 1
+       mode: slider
+       value_template: "{{ value | multiply(0.1) | round(0) | int }}"
+       device: 
+         name: "Hub 1200 (1)"
+         identifiers: "HUBSERIENNUMMER"
+         manufacturer: "Zendure"
+         model: "SmartPV Hub 1200 Controller"  
+         
+     - unique_id: "DEVICE_IDsocSet"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/socSet"
+       command_topic: "iot/73bkTV/DEVICE_ID/properties/write"
+       command_template: "{\"properties\": {\"socSet\": {{ value | multiply(10) }} }}"
+       name: "socSet"
+       device_class: "battery"
+       unit_of_measurement: '%'
+       min: 1
+       max: 100
+       step: 1
+       mode: slider
+       value_template: "{{ value | multiply(0.1) | round(0) | int }}"
+       device: 
+         name: "Hub 1200 (1)"
+         identifiers: "HUBSERIENNUMMER"
+         manufacturer: "Zendure"
+         model: "SmartPV Hub 1200 Controller"  
+         
+     - unique_id: "DEVICE_IDoutputLimit"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/outputLimit"
+       command_topic: "iot/73bkTV/DEVICE_ID/properties/write"
+       command_template: "{\"properties\": {\"outputLimit\": {{ value }} }}"
+       name: "outputLimit"
+       device_class: "power"
+       unit_of_measurement: 'W'
+       min: 0
+       max: 1200
+       step: 1
+       mode: slider
+       device: 
+         name: "Hub 1200 (1)"
+         identifiers: "HUBSERIENNUMMER"
+         manufacturer: "Zendure"
+         model: "SmartPV Hub 1200 Controller"  
+         
+     - unique_id: "DEVICE_IDinverseMaxPower"
+       state_topic: "solarflow-hub/DEVICE_IDtelemetry/inverseMaxPower"
+       command_topic: "iot/73bkTV/DEVICE_ID/properties/write"
+       command_template: "{\"properties\": {\"inverseMaxPower\": {{ value }} }}"
+       name: "inverseMaxPower"
+       device_class: "power"
+       unit_of_measurement: 'W'
+       min: 0
+       max: 1200
+       step: 1
+       mode: slider
+       device: 
+         name: "Hub 1200 (1)"
+         identifiers: "HUBSERIENNUMMER"
+         manufacturer: "Zendure"
+         model: "SmartPV Hub 1200 Controller" 
 
    switch:
      - unique_id: "DEVICE_IDmasterSwitch"
@@ -13,7 +87,7 @@
        state_on: true
        device: 
          name: "Hub 1200 (1)"
-         identifiers: "PO1HLEJLFC04705"
+         identifiers: "HUBSERIENNUMMER"
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
@@ -29,7 +103,7 @@
        state_on: true
        device: 
          name: "Hub 1200 (1)"
-         identifiers: "PO1HLEJLFC04705"
+         identifiers: "HUBSERIENNUMMER"
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
@@ -51,7 +125,7 @@
          
    sensor:
 
-     - name: "SF1 Hub State"
+     - name: "Hub State"
        unique_id: "DEVICE_IDhubState"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/hubState"
        value_template: "{{ value | int }}"
@@ -61,7 +135,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
-     - name: "SF1 Solar Input Power"
+     - name: "Solar Input Power"
        unique_id: "DEVICE_IDsolarInputPower"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/solarInputPower"
        unit_of_measurement: "W"
@@ -74,7 +148,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
-     - name: "SF1 Pack Input Power"
+     - name: "Pack Input Power"
        unique_id: "DEVICE_IDpackInputPower"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/packInputPower"
        unit_of_measurement: "W"
@@ -87,7 +161,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
-     - name: "SF1 Output Pack Power"
+     - name: "Output Pack Power"
        unique_id: "DEVICE_IDoutputPackPower"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/outputPackPower"
        unit_of_measurement: "W"
@@ -100,7 +174,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
-     - name: "SF1 Output Home Power"
+     - name: "Output Home Power"
        unique_id: "DEVICE_IDoutputHomePower"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/outputHomePower"
        unit_of_measurement: "W"
@@ -113,7 +187,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
-     - name: "SF1 Output Limit"
+     - name: "Output Limit"
        unique_id: "DEVICE_IDoutputLimit"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/outputLimit"
        value_template: "{{ value | int }}"
@@ -124,7 +198,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
-     - name: "SF1 Input Limit"
+     - name: "Input Limit"
        unique_id: "DEVICE_IDinputLimit"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/inputLimit"
        value_template: "{{ value | int }}"
@@ -135,7 +209,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
-     - name: "SF1 Remain Out Time"
+     - name: "Remain Out Time"
        unique_id: "DEVICE_IDremainOutTime"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/remainOutTime"
        value_template: "{{ value | int }}"
@@ -147,7 +221,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
-     - name: "SF1 Remain Input Time"
+     - name: "Remain Input Time"
        unique_id: "DEVICE_IDremainInputTime"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/remainInputTime"
        value_template: "{{ value | int }}"
@@ -159,7 +233,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
-     - name: "SF1 Pack State"
+     - name: "Pack State"
        unique_id: "DEVICE_IDpackState"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/packState"
        value_template: "{{ value | int }}"
@@ -169,7 +243,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
-     - name: "SF1 Pack Num"
+     - name: "Pack Num"
        unique_id: "DEVICE_IDpackNum"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/packNum"
        value_template: "{{ value | int }}"
@@ -179,7 +253,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
-     - name: "SF1 Electric Level"
+     - name: "Electric Level"
        unique_id: "DEVICE_IDelectricLevel"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/electricLevel"
        unit_of_measurement: "%"
@@ -191,7 +265,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
-     - name: "SF1 SOC Set"
+     - name: "socSet"
        unique_id: "DEVICE_IDsocSet"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/socSet"
        unit_of_measurement: "%"
@@ -202,7 +276,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
          
-     - name: "SF1 min SOC"
+     - name: "minSOC"
        unique_id: "DEVICE_IDminSoc"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/minSoc"
        unit_of_measurement: "%"
@@ -213,7 +287,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"         
          
-     - name: "SF1 Inverse Max Power"
+     - name: "Inverse Max Power"
        unique_id: "DEVICE_IDinverseMaxPower"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/inverseMaxPower"
        value_template: "{{ value | int }}"
@@ -224,7 +298,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
-     - name: "SF1 WiFi State"
+     - name: "WiFi State"
        unique_id: "DEVICE_IDwifiState"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/wifiState"
        value_template: "{{ value | bool('') }}"
@@ -234,7 +308,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
          
-     - name: "SF1 Heat State"
+     - name: "Heat State"
        unique_id: "DEVICE_IDheatState"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/heatState"
        value_template: "{{ value | bool('') }}"
@@ -244,7 +318,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"   
          
-     - name: "SF1 AC Mode"
+     - name: "AC Mode"
        unique_id: "DEVICE_IDacMode"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/acMode"
        value_template: "{{ value | int }}"
@@ -254,7 +328,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"                
 
-     - name: "SF1 Solar Power 1"
+     - name: "Solar Power 1"
        unique_id: "DEVICE_IDsolarPower1"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/solarPower1"
        value_template: "{{ value | int(0) }}"
@@ -267,7 +341,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
-     - name: "SF1 Solar Power 2"
+     - name: "Solar Power 2"
        unique_id: "DEVICE_IDsolarPower2"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/solarPower2"
        value_template: "{{ value | int(0) }}"
@@ -280,7 +354,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
 
-     - name: "SF1 Pass Mode"
+     - name: "Pass Mode"
        unique_id: "DEVICE_IDpassMode"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/passMode"
        value_template: "{{ value | int }}"
@@ -290,7 +364,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"
          
-     - name: "SF1 Batterie 1 maxTemp"
+     - name: "Batterie 1 maxTemp"
        unique_id: "DEVICE_IDBatterie1maxTemp"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/batteries/BATTERIESERIENNUMMER/maxTemp"
        value_template: "{{ (value | float/10 - 273.15) | round(2) }}"
@@ -302,7 +376,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"   
          
-     - name: "SF1 Batterie 1 minVol"
+     - name: "Batterie 1 minVol"
        unique_id: "DEVICE_IDBatterie1minVol"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/batteries/BATTERIESERIENNUMMER/minVol"
        value_template: "{{ (value | float/100) | round(2) }}"
@@ -314,7 +388,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller"   
          
-     - name: "SF1 Batterie 1 maxVol"
+     - name: "Batterie 1 maxVol"
        unique_id: "DEVICE_IDBatterie1maxVol"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/batteries/BATTERIESERIENNUMMER/maxVol"
        value_template: "{{ (value | float/100) | round(2) }}"
@@ -326,7 +400,7 @@
          manufacturer: "Zendure"
          model: "SmartPV Hub 1200 Controller" 
          
-     - name: "SF1 Batterie 1 totalVol"
+     - name: "Batterie 1 totalVol"
        unique_id: "DEVICE_IDBatterie1totalVol"
        state_topic: "solarflow-hub/DEVICE_ID/telemetry/batteries/BATTERIESERIENNUMMER/totalVol"
        value_template: "{{ (value | float/100) | round(2) }}"
