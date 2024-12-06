@@ -1,4 +1,4 @@
-# Zendure Solarflow - Daten an lokalen mqtt-Broker senden und in Homeassistant abfragen
+# Zendure Solarflow - Daten an lokalen mqtt-Broker senden und in Homeassistant abfragen und steuern
 
 ## UPDATE 06.12.2024 - Implementierung der Steuerung über Homeassistant
 
