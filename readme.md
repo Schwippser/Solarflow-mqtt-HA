@@ -1,5 +1,9 @@
 # Zendure Solarflow - Daten an lokalen mqtt-Broker senden und in Homeassistant abfragen
 
+## UPDATE 06.12.2024 - Implementierung der Steuerung über Homeassistant
+
+**06.12.2024:** Durch eine Anpassung der mqtt.yaml ist es jetzt möglich das Zendure-Device über Homeassistant zu steuern
+
 ## Vorwort
 
 Seit ca. 1 Jahr habe ich den Zendure Solarflow Hub1200 im Einsatz. Ich suchte nach einer Möglichkeit die Daten in Homeassistant einzubinden. Dazu nutze ich bis vor kurzer Zeit die Möglichkeit der Abfrage von mqtt-Daten aus der Zendure-Cloud nach der Anleitung von z-master42 (https://github.com/z-master42/solarflow).
