@@ -1,0 +1,76 @@
+---
+
+
+# replace YOUR_PRODUCT_ID with your device id
+# replace YOUR_DEVICE_ID with your device id
+# replace YOUR_BATTERY_SN with your battery serial number
+
+- binary_sensor:
+  - name: "State"
+    unique_id: "YOUR_BATTERY_SN_state"
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: '{{ value_json.packData[0].state }}'
+    payload_on: "1"
+    payload_off: "0"
+    device_class: "power"
+    device: &zen_sf_battery1
+      name: "TEST Battery"
+      identifiers: "YOUR_BATTERY_SN"
+      manufacturer: "solarflow-hub"
+      model: "AB2000"
+      via_device: "YOUR_DEVICE_ID"
+
+- sensor:
+  - name: "Battery Level"
+    unique_id: "YOUR_BATTERY_SN_socLevel"
+    
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: '{{ value_json.packData[0].socLevel | int }}'
+    unit_of_measurement: "%"
+    device_class: "battery"
+    device: *zen_sf_battery1
+
+  - name: "Max Temperature"
+    unique_id: "YOUR_BATTERY_SN_maxTemp"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: '{{ value_json.packData[0].maxTemp | float/10 - 273.15 | round(2) }}'
+    unit_of_measurement: "°C"
+    device_class: "temperature"
+    device: *zen_sf_battery1
+
+  - name: "Power"
+    unique_id: "YOUR_BATTERY_SN_power"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: '{{ value_json.packData[0].power | int(0) }}'
+    unit_of_measurement: "W"
+    device_class: "power"
+    device: *zen_sf_battery1
+
+  - name: "Voltage Max"
+    unique_id: "YOUR_BATTERY_SN_maxVol"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: '{{ value_json.packData[0].maxVol | float/100 | round(2) }}'
+    unit_of_measurement: "V"
+    device_class: "voltage"
+    device: *zen_sf_battery1
+
+  - name: "Voltage Min"
+    unique_id: "YOUR_BATTERY_SN_minVol"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: '{{ value_json.packData[0].minVol | float/100 | round(2) }}'
+    unit_of_measurement: "V"
+    device_class: "voltage"
+    device: *zen_sf_battery1
+
+  - name: "Voltage Total"
+    unique_id: "YOUR_BATTERY_SN_totalVol"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: '{{ value_json.packData[0].totalVol | float/100 | round(2) }}'
+    unit_of_measurement: "V"
+    device_class: "voltage"
+    device: *zen_sf_battery1
