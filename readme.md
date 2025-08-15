@@ -1,5 +1,19 @@
 # Zendure Solarflow - Daten an lokalen mqtt-Broker senden und in Homeassistant abfragen und steuern
 
+## UPDATE 15.08.2025 - "solarflow-topic-mapper.py" nicht mehr nötig
+
+**15.08.2025:** Der Einsatz des Scriptes "solarflow-topic-mapper.py" ist nun nicht mehr nötig.
+Dazu im Schritte 1 bis 3 ausführen!
+Schritt 4 überspringen
+
+Schritt 5 dann wie folgt:
+
+In Home-Assistent in der configuration.yaml folgende Zeite einfügen.
+```
+mqtt: !include_dir_merge_list mqtt/
+```
+Im Config-Verzeichnis vom Homeassistant ein neues Verzeichnis namens "mqtt" anlegen. In dieses Verzeichnis dann die Dateien "mqtt_device.yaml" und "mqtt_battery.yaml" hochladen.
+
 ## UPDATE 06.12.2024 - Implementierung der Steuerung über Homeassistant
 
 **06.12.2024:** Durch eine Anpassung der mqtt.yaml ist es jetzt möglich das Zendure-Device über Homeassistant zu steuern
