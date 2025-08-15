@@ -58,7 +58,7 @@
          model: "SmartPV Hub 1200 Controller"  
          
      - unique_id: "DEVICE_IDinverseMaxPower"
-       state_topic: "solarflow-hub/DEVICE_IDtelemetry/inverseMaxPower"
+       state_topic: "solarflow-hub/DEVICE_ID/telemetry/inverseMaxPower"
        command_topic: "iot/73bkTV/DEVICE_ID/properties/write"
        command_template: "{\"properties\": {\"inverseMaxPower\": {{ value }} }}"
        name: "inverseMaxPower"
