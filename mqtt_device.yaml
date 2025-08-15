@@ -1,0 +1,363 @@
+---
+
+# replace YOUR_PRODUCT_ID with your product id
+# replace YOUR_DEVICE_ID with your device id
+
+- binary_sensor:
+  - name: "Battery Bypass"
+    unique_id: "YOUR_DEVICE_ID_pass"
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.pass }}"
+    payload_on: "1"
+    payload_off: "0"
+    icon: "mdi:auto-mode"
+    device: &zen_sf_device
+      name: "SF HUB2000"
+      identifiers: "YOUR_DEVICE_ID"
+      manufacturer: "solarflow-hub"
+      model: "Hub 2000"
+
+  - name: "Heat State"
+    unique_id: "YOUR_DEVICE_ID_heatState"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.heatState }}"
+    payload_on: "1"
+    payload_off: "0"
+    icon: "mdi:heating-coil"
+    entity_category: "diagnostic"
+    device: *zen_sf_device
+
+  - name: "Wifi State"
+    unique_id: "YOUR_DEVICE_ID_wifiState"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.wifiState }}"
+    payload_on: "1"
+    payload_off: "0"
+    device_class: "connectivity"
+    entity_category: "diagnostic"
+    device: *zen_sf_device
+
+- number:
+  - name: "Input Limit"
+    unique_id: "YOUR_DEVICE_ID_inputLimit"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.inputLimit }}"
+    command_topic: "iot/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/write"
+    command_template: "{\"properties\": {\"inputLimit\": {{ value }} } }"
+    icon: "mdi:home-lightning-bolt-outline"
+    unit_of_measurement: "W"
+    device_class: "power"
+    entity_category: "config"
+    min: 0
+    max: 600
+    step: 1
+    mode: "slider"
+    device: *zen_sf_device
+
+  - name: "Inverter Limit" # maximum power the microinverter supports
+    unique_id: "YOUR_DEVICE_ID_inverseMaxPower"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.inverseMaxPower }}"
+    command_topic: "iot/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/write"
+    command_template: "{\"properties\": {\"inverseMaxPower\": {{ value }} }}"
+    icon: "mdi:flash-alert"
+    unit_of_measurement: "W"
+    device_class: "power"
+    entity_category: "config"
+    min: 0
+    max: 1200
+    step: 1
+    mode: "slider"
+    device: *zen_sf_device
+
+  - name: "Output Limit"
+    unique_id: "YOUR_DEVICE_ID_outputLimit"
+
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.outputLimit }}"
+    command_topic: "iot/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/write"
+    command_template: "{\"properties\": {\"outputLimit\": {{ value }} } }"
+    icon: "mdi:home-lightning-bolt-outline"
+    unit_of_measurement: "W"
+    device_class: "power"
+    entity_category: "config"
+    min: 0
+    max: 1200
+    step: 1
+    mode: "slider"
+    device: *zen_sf_device
+
+  - name: "SoC Min"
+    unique_id: "YOUR_DEVICE_ID_minSoc"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.minSoc | multiply(0.1) | round(0) | int }}"
+    command_topic: "iot/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/write"
+    command_template: "{\"properties\": {\"minSoc\": {{ value | multiply(10) }} } }"
+    icon: "mdi:battery-minus"
+    unit_of_measurement: "%"
+    device_class: "battery"
+    entity_category: "config"
+    min: 1
+    max: 100
+    step: 1
+    mode: "slider"
+    device: *zen_sf_device
+
+  - name: "SoC Set"
+    unique_id: "YOUR_DEVICE_ID_socSet"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.socSet | multiply(0.1) | round(0) | int }}"
+    command_topic: "iot/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/write"
+    command_template: "{\"properties\": {\"socSet\": {{ value | multiply(10) }} } }"
+    icon: "mdi:battery-plus"
+    unit_of_measurement: "%"
+    device_class: "battery"
+    entity_category: "config"
+    min: 1
+    max: 100
+    step: 1
+    mode: "slider"
+    device: *zen_sf_device
+
+- sensor:
+  - name: "AC Mode"
+    unique_id: "YOUR_DEVICE_ID_acMode"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: >
+      {{
+        "Standby" if value_json.properties.acMode|int == 0 else
+        "Laden" if value_json.properties.acMode|int == 1 else
+        "Entladen" if value_json.properties.acMode|int == 2 else
+        "Unbekannt"
+      }}
+    icon: "mdi:current-ac"
+    device_class: "enum"
+    options:
+      - Standby
+      - Laden
+      - Entladen
+      - Unbekannt
+    entity_category: "diagnostic"
+    device: *zen_sf_device
+
+  - name: "Battery Level"
+    unique_id: "YOUR_DEVICE_ID_electricLevel"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.electricLevel | int }}"
+    unit_of_measurement: "%"
+    device_class: "battery"
+    device: *zen_sf_device
+
+  - name: "Battery Num"
+    unique_id: "YOUR_DEVICE_ID_packNum"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.packNum | int }}"
+    icon: "mdi:battery-check-outline"
+    entity_category: "diagnostic"
+    device: *zen_sf_device
+
+  - name: "Battery Power Input"
+    unique_id: "YOUR_DEVICE_ID_packInputPower"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.packInputPower | int(0) }}"
+    icon: "mdi:battery-arrow-down-outline"
+    unit_of_measurement: "W"
+    device_class: "power"
+    state_class: "measurement"
+    device: *zen_sf_device
+
+  - name: "Battery Power Output"
+    unique_id: "YOUR_DEVICE_ID_outputPackPower"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.outputPackPower | int(0) }}"
+    icon: "mdi:battery-arrow-up-outline"
+    unit_of_measurement: "W"
+    device_class: "power"
+    state_class: "measurement"
+    device: *zen_sf_device
+
+  - name: "Battery State"
+    unique_id: "YOUR_DEVICE_ID_packState"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: >
+      {{
+        "Standby" if value_json.properties.packState|int == 0 else
+        "Laden" if value_json.properties.packState|int == 1 else
+        "Entladen" if value_json.properties.packState|int == 2 else
+        "Unbekannt"
+      }}
+    icon: "mdi:battery-sync-outline"
+    device_class: "enum"
+    options:
+      - Standby
+      - Laden
+      - Entladen
+      - Unbekannt
+    entity_category: "diagnostic"
+    device: *zen_sf_device
+
+  - name: "Home Power Output"
+    unique_id: "YOUR_DEVICE_ID_outputHomePower"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.outputHomePower | int(0) }}"
+    icon: "mdi:home-import-outline"
+    unit_of_measurement: "W"
+    device_class: "power"
+    state_class: "measurement"
+    device: *zen_sf_device
+
+  - name: "Hub State"
+    unique_id: "YOUR_DEVICE_ID_hubState"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: >
+      {{
+        "Standby" if value_json.properties.hubState|int == 0 else
+        "Abschalten" if value_json.properties.hubState|int == 1 else
+        "Unbekannt"
+      }}
+    icon: "mdi:vector-link"
+    device_class: "enum"
+    options:
+      - Standby
+      - Abschalten
+      - Unbekannt
+    entity_category: "diagnostic"
+    device: *zen_sf_device
+
+  - name: "Remain Input Time"
+    unique_id: "YOUR_DEVICE_ID_remainInputTime"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.remainInputTime | int }}"
+    unit_of_measurement: "min"
+    device_class: "duration"
+    device: *zen_sf_device
+
+  - name: "Remain Output Time"
+    unique_id: "YOUR_DEVICE_ID_remainOutTime"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.remainOutTime | int }}"
+    unit_of_measurement: "min"
+    device_class: "duration"
+    device: *zen_sf_device
+
+  - name: "Solar Power Input"
+    unique_id: "YOUR_DEVICE_ID_solarInputPower"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.solarInputPower | int(0) }}"
+    icon: "mdi:solar-power"
+    unit_of_measurement: "W"
+    device_class: "power"
+    state_class: "measurement"
+    device: *zen_sf_device
+
+  - name: "Solar Power Panel 1"
+    unique_id: "YOUR_DEVICE_ID_solarPower1"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.solarPower1 | int(0) }}"
+    icon: "mdi:solar-power-variant-outline"
+    unit_of_measurement: "W"
+    device_class: "power"
+    state_class: "measurement"
+    device: *zen_sf_device
+
+  - name: "Solar Power Panel 2"
+    unique_id: "YOUR_DEVICE_ID_solarPower2"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.solarPower2 | int(0) }}"
+    icon: "mdi:solar-power-variant-outline"
+    unit_of_measurement: "W"
+    device_class: "power"
+    state_class: "measurement"
+    device: *zen_sf_device
+
+- select:
+  - name: "Battery Bypass Mode"
+    unique_id: "YOUR_DEVICE_ID_passMode_select"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: >
+      {{
+        "Automatisch" if value_json.properties.passMode | int == 0 else
+        "Immer aus" if value_json.properties.passMode | int == 1 else
+        "Immer an" if value_json.properties.passMode | int == 2 else
+        "Unbekannt"
+      }}
+    command_topic: "iot/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/write"
+    command_template: >
+      {% set new_val = 
+          1 if value == "Immer aus" else
+          2 if value == "Immer an" else
+          0 %}
+      {"properties": {"passMode": {{ new_val }} } }
+    icon: "mdi:auto-mode"
+    options:
+      - Automatisch
+      - Immer aus
+      - Immer ein
+      - Unbekannt
+    device: *zen_sf_device
+
+- switch:
+  - name: "Auto Recover"
+    unique_id: "YOUR_DEVICE_ID_autoRecover_switch"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.autoRecover }}"
+    state_on: "1"
+    state_off: "0"
+    command_topic: "iot/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/write"
+    command_template: "{\"properties\": {\"autoRecover\": {{ value }} } }"
+    payload_on: "1"
+    payload_off: "0"
+    icon: "mdi:restore"
+    device_class: "switch"
+    device: *zen_sf_device
+
+  - name: "Buzzer Switch"
+    unique_id: "YOUR_DEVICE_ID_buzzerSwitch_switch"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.buzzerSwitch_switch }}"
+    state_on: "1"
+    state_off: "0"
+    command_topic: "iot/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/write"
+    command_template: "{\"properties\": {\"buzzerSwitch\": {{ value }} } }"
+    payload_on: "1"
+    payload_off: "0"
+    icon: "mdi:bullhorn-outline"
+    device_class: "switch"
+    device: *zen_sf_device
+
+  - name: "Master Switch"
+    unique_id: "YOUR_DEVICE_ID_masterSwitch_switch"
+     
+    state_topic: "/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/report"
+    value_template: "{{ value_json.properties.masterSwitch_switch }}"
+    state_on: "1"
+    state_off: "0"
+    command_topic: "iot/YOUR_PRODUCT_ID/YOUR_DEVICE_ID/properties/write"
+    command_template: "{\"properties\": {\"masterSwitch\": {{ value }} } }"
+    payload_on: "1"
+    payload_off: "0"
+    icon: "mdi:gesture-tap-button"
+    device_class: "switch"
+    device: *zen_sf_device
